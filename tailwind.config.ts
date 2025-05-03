@@ -108,6 +108,10 @@ export default {
           "0%, 100%": { stroke: "rgba(155, 135, 245, 0.6)" },
           "50%": { stroke: "rgba(155, 135, 245, 1)" },
         },
+        "gradient-x": {
+          "0%, 100%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -123,6 +127,7 @@ export default {
         "orbit-5": "orbit 40s linear infinite",
         "pulse": "pulse 3s ease-in-out infinite",
         "path-glow": "path-glow 3s ease-in-out infinite",
+        "gradient-x": "gradient-x 15s ease infinite",
       },
     },
   },
