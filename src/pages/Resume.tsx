@@ -11,10 +11,13 @@ import { ParticleBackground } from "@/components/ParticleBackground";
 const Resume = () => {
   const { theme } = useTheme();
   const [loading, setLoading] = useState(true);
-
+  
+  // Direct PDF URL from Google Drive
+  const pdfUrl = "https://drive.google.com/file/d/1WCTd0XYN5_g8ZhRG1GwIO-1AbS7Y80Px/preview";
+  
   const handleDownload = () => {
-    // This would be a link to your actual resume PDF file
-    alert("In a real application, this would download a PDF resume");
+    // Direct download link for the PDF
+    window.open("https://drive.google.com/uc?export=download&id=1WCTd0XYN5_g8ZhRG1GwIO-1AbS7Y80Px", "_blank");
   };
 
   return (
@@ -27,10 +30,10 @@ const Resume = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="glass-card p-6 md:p-8 rounded-xl max-w-4xl mx-auto"
+          className="glass-card p-6 md:p-8 rounded-xl max-w-5xl mx-auto"
         >
           <div className="flex justify-between items-center mb-8">
-            <h1 className="text-2xl md:text-3xl font-bold">My Resume</h1>
+            <h1 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-neon-purple to-neon-blue bg-clip-text text-transparent">My Resume</h1>
             <Button
               onClick={handleDownload}
               className="glass-button bg-gradient-to-r from-neon-purple/80 to-neon-blue/80 hover:from-neon-purple hover:to-neon-blue border-none"
@@ -47,12 +50,13 @@ const Resume = () => {
               </div>
             )}
             <iframe
-              src={`https://docs.google.com/document/d/e/2PACX-1vQHcFgPZtLgkGsSzJxQ7nGJgoEcnkgKIIbcIs8h2QfwSL9_F5GJVVGP6GHDCMTqKLJKASLCbKjYqLwf/pub?embedded=true`}
+              src={pdfUrl}
               className="w-full h-full"
               frameBorder="0"
               onLoad={() => setLoading(false)}
               title="Resume"
               style={{ display: loading ? "none" : "block" }}
+              allow="autoplay"
             />
           </div>
         </motion.div>

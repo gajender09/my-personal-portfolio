@@ -77,15 +77,15 @@
 
 @layer components {
   .glass {
-    @apply backdrop-blur-lg bg-white/10 border border-white/20 rounded-2xl shadow-lg;
+    @apply backdrop-blur-lg bg-black/30 border border-white/10 rounded-2xl shadow-lg;
   }
   
   .glass-card {
-    @apply glass hover:bg-white/15 transition-all duration-300;
+    @apply glass hover:bg-white/10 transition-all duration-300;
   }
   
   .glass-button {
-    @apply glass px-4 py-2 hover:bg-white/20 transition-all duration-300;
+    @apply glass px-4 py-2 hover:bg-white/15 transition-all duration-300;
   }
   
   .glow {
@@ -94,7 +94,7 @@
   
   .glow::before {
     content: '';
-    @apply absolute inset-0 -z-10 bg-neon-purple/20 blur-lg rounded-2xl opacity-75;
+    @apply absolute inset-0 -z-10 bg-neon-purple/30 blur-lg rounded-2xl opacity-75;
   }
 
   .nav-item {
@@ -103,7 +103,7 @@
   
   .nav-item::after {
     content: '';
-    @apply absolute bottom-0 left-0 h-0.5 w-0 bg-neon-purple transition-all duration-300;
+    @apply absolute bottom-0 left-0 h-0.5 w-0 bg-gradient-to-r from-neon-purple to-neon-blue transition-all duration-300;
   }
   
   .nav-item:hover::after {
@@ -115,7 +115,7 @@
   }
   
   .active-nav-item::after {
-    @apply w-full bg-neon-purple;
+    @apply w-full bg-gradient-to-r from-neon-purple to-neon-blue;
   }
 }
 
@@ -140,4 +140,24 @@
   to {
     stroke-dashoffset: 0;
   }
+}
+
+/* Enhance scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #9b87f5, #1EAEDB);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #9b87f580, #1EAEDB80);
 }

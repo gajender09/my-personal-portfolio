@@ -62,7 +62,7 @@ export function Header() {
     >
       <nav className="flex items-center justify-between max-w-7xl mx-auto">
         <Link to="/" className="font-mono font-bold text-2xl tracking-tighter">
-          <span className="text-neon-purple">JACK</span>
+          <span className="text-neon-purple">GAJENDER</span>
         </Link>
 
         {/* Desktop Navigation */}

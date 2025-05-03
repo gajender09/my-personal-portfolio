@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Github, Linkedin, Mail, MapPin, School } from "lucide-react";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 export function AboutSection() {
   const [ref, inView] = useInView({
@@ -94,12 +95,17 @@ export function AboutSection() {
           
           <motion.div variants={fadeIn} className="order-1 md:order-2 flex justify-center">
             <div className="relative">
-              <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-neon-purple to-neon-blue opacity-75 blur-md" />
-              <div className="w-60 h-60 md:w-72 md:h-72 rounded-full overflow-hidden relative z-10 border-2 border-white/20">
-                <div className="w-full h-full bg-gradient-to-br from-neon-purple/40 to-neon-blue/40 flex items-center justify-center text-4xl md:text-5xl font-mono font-bold">
-                  JACK
-                </div>
-              </div>
+              <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-neon-purple to-neon-blue opacity-75 blur-md"></div>
+              <Avatar className="w-60 h-60 md:w-72 md:h-72 rounded-full overflow-hidden relative z-10 border-2 border-white/20">
+                <AvatarImage 
+                  src="/lovable-uploads/d626946c-05ac-4cc4-98d1-2b50238ed13f.png" 
+                  alt="Gajender Mandiwal" 
+                  className="object-cover"
+                />
+                <AvatarFallback className="w-full h-full bg-gradient-to-br from-neon-purple/40 to-neon-blue/40 flex items-center justify-center text-4xl md:text-5xl font-mono font-bold">
+                  GM
+                </AvatarFallback>
+              </Avatar>
             </div>
           </motion.div>
         </motion.div>
