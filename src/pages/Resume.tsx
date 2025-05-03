@@ -2,14 +2,10 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
-import { Download } from "lucide-react";
-import { useTheme } from "@/context/ThemeContext";
-import { ParticleBackground } from "@/components/ParticleBackground";
+import { Download, ArrowLeft } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Resume = () => {
-  const { theme } = useTheme();
   const [loading, setLoading] = useState(true);
   
   // Direct PDF URL from Google Drive
@@ -21,48 +17,50 @@ const Resume = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <ParticleBackground />
-      <Header />
-      
-      <main className="flex-grow container mx-auto px-4 pt-28 pb-16">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="glass-card p-6 md:p-8 rounded-xl max-w-5xl mx-auto"
+    <div className="min-h-screen bg-background flex flex-col p-4">
+      {/* Back button and actions row */}
+      <div className="flex justify-between items-center mb-4 z-10">
+        <Button 
+          as={Link}
+          to="/"
+          variant="ghost" 
+          className="flex items-center gap-1 hover:bg-white/10 transition-all"
         >
-          <div className="flex justify-between items-center mb-8">
-            <h1 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-neon-purple to-neon-blue bg-clip-text text-transparent">My Resume</h1>
-            <Button
-              onClick={handleDownload}
-              className="glass-button bg-gradient-to-r from-neon-purple/80 to-neon-blue/80 hover:from-neon-purple hover:to-neon-blue border-none"
-            >
-              <Download className="mr-2 h-4 w-4" />
-              Download Resume
-            </Button>
+          <ArrowLeft className="h-4 w-4" />
+          <span>Back to Portfolio</span>
+        </Button>
+        
+        <Button
+          onClick={handleDownload}
+          className="glass-button bg-gradient-to-r from-neon-purple/80 to-neon-blue/80 hover:from-neon-purple hover:to-neon-blue border-none"
+        >
+          <Download className="mr-2 h-4 w-4" />
+          Download Resume
+        </Button>
+      </div>
+      
+      {/* Resume container */}
+      <motion.div 
+        className="flex-grow w-full rounded-xl overflow-hidden border border-white/10 shadow-xl"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        {loading && (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="animate-spin w-12 h-12 border-4 border-neon-purple/80 border-t-transparent rounded-full" />
           </div>
-
-          <div className="w-full rounded-md overflow-hidden bg-white/5 border border-white/10 h-[calc(100vh-300px)]">
-            {loading && (
-              <div className="flex items-center justify-center h-full">
-                <div className="animate-spin w-8 h-8 border-4 border-neon-purple/80 border-t-transparent rounded-full" />
-              </div>
-            )}
-            <iframe
-              src={pdfUrl}
-              className="w-full h-full"
-              frameBorder="0"
-              onLoad={() => setLoading(false)}
-              title="Resume"
-              style={{ display: loading ? "none" : "block" }}
-              allow="autoplay"
-            />
-          </div>
-        </motion.div>
-      </main>
-
-      <Footer />
+        )}
+        <iframe
+          src={pdfUrl}
+          className="w-full h-[calc(100vh-100px)]"
+          frameBorder="0"
+          onLoad={() => setLoading(false)}
+          title="Resume"
+          style={{ display: loading ? "none" : "block" }}
+          allow="autoplay"
+        />
+      </motion.div>
     </div>
   );
 };
