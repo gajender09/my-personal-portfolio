@@ -20,15 +20,15 @@ const Resume = () => {
     <div className="min-h-screen bg-background flex flex-col p-4">
       {/* Back button and actions row */}
       <div className="flex justify-between items-center mb-4 z-10">
-        <Button 
-          as={Link}
-          to="/"
-          variant="ghost" 
-          className="flex items-center gap-1 hover:bg-white/10 transition-all"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          <span>Back to Portfolio</span>
-        </Button>
+        <Link to="/">
+          <Button 
+            variant="ghost" 
+            className="flex items-center gap-1 hover:bg-white/10 transition-all"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            <span>Back to Portfolio</span>
+          </Button>
+        </Link>
         
         <Button
           onClick={handleDownload}
