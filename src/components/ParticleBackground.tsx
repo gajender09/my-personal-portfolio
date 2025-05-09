@@ -1,95 +1,103 @@
 
 import { useCallback } from "react";
-import Particles from "react-tsparticles";
-import type { Container, Engine } from "tsparticles-engine";
-import { loadSlim } from "tsparticles-slim";
 import { useTheme } from "@/context/ThemeContext";
+import Particles from "react-tsparticles";
+import type { Engine } from "tsparticles-engine";
+import { loadSlim } from "tsparticles-slim";
 
-export const ParticleBackground = () => {
+export function ParticleBackground() {
   const { theme } = useTheme();
   
   const particlesInit = useCallback(async (engine: Engine) => {
     await loadSlim(engine);
   }, []);
 
-  const particlesLoaded = useCallback(async (container: Container | undefined) => {
-    await console.log(container);
-  }, []);
-
   return (
     <Particles
       id="tsparticles"
       init={particlesInit}
-      loaded={particlesLoaded}
       options={{
-        background: {
-          color: {
-            value: "transparent",
-          },
-        },
-        fpsLimit: 120,
-        interactivity: {
-          events: {
-            onClick: {
-              enable: false,
-              mode: "push",
-            },
-            onHover: {
-              enable: true,
-              mode: "repulse",
-            },
-            resize: true,
-          },
-          modes: {
-            push: {
-              quantity: 4,
-            },
-            repulse: {
-              distance: 100,
-              duration: 0.4,
-            },
-          },
-        },
+        fpsLimit: 60,
         particles: {
-          color: {
-            value: theme === "dark" ? "#ffffff" : "#000000",
-          },
-          links: {
-            color: theme === "dark" ? "#9b87f5" : "#6E59A5",
-            distance: 150,
-            enable: true,
-            opacity: 0.3,
-            width: 1,
-          },
-          move: {
-            direction: "none",
-            enable: true,
-            outModes: {
-              default: "bounce",
-            },
-            random: true,
-            speed: 1,
-            straight: false,
-          },
           number: {
+            value: 80,
             density: {
               enable: true,
-              area: 800,
-            },
-            value: 40,
+              value_area: 800
+            }
+          },
+          color: {
+            value: theme === "dark" ? "#ffffff" : "#9b87f5"
           },
           opacity: {
-            value: 0.2,
-          },
-          shape: {
-            type: "circle",
+            value: 0.3,
+            random: true,
+            anim: {
+              enable: true,
+              speed: 0.5,
+              opacity_min: 0.1,
+              sync: false
+            }
           },
           size: {
-            value: { min: 1, max: 3 },
+            value: 3,
+            random: true,
+            anim: {
+              enable: true,
+              speed: 2,
+              size_min: 0.1,
+              sync: false
+            }
           },
+          line_linked: {
+            enable: true,
+            distance: 150,
+            color: theme === "dark" ? "#ffffff" : "#9b87f5",
+            opacity: 0.2,
+            width: 1
+          },
+          move: {
+            enable: true,
+            speed: 0.5,
+            direction: "none",
+            random: true,
+            straight: false,
+            out_mode: "out",
+            bounce: false
+          }
         },
-        detectRetina: true,
+        interactivity: {
+          detect_on: "canvas",
+          events: {
+            onhover: {
+              enable: true,
+              mode: "grab"
+            },
+            onclick: {
+              enable: true,
+              mode: "push"
+            },
+            resize: true
+          },
+          modes: {
+            grab: {
+              distance: 140,
+              line_linked: {
+                opacity: 0.5
+              }
+            },
+            push: {
+              particles_nb: 3
+            }
+          }
+        },
+        retina_detect: true,
+        background: {
+          color: {
+            value: "transparent"
+          }
+        }
       }}
     />
   );
-};
+}

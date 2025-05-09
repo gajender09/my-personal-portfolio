@@ -15,23 +15,30 @@ interface Project {
 
 const projects: Project[] = [
   {
+    title: "AICademy",
+    description: "AI-powered learning platform with course generation, quizzes, and student dashboard.",
+    techStack: ["React", "MongoDB", "Tailwind", "GPT API"],
+    github: "https://github.com/gajender09",
+    demo: "#",
+  },
+  {
     title: "ChainTrace",
     description: "Blockchain supply chain tracker for ensuring product authenticity and traceability across the supply network.",
-    techStack: ["React", "Web3.js", "Solidity", "Node.js"],
+    techStack: ["React", "Web3.js", "Ethereum", "Solidity"],
     github: "https://github.com/gajender09",
     demo: "#",
   },
   {
     title: "TrustBallot",
     description: "Secure decentralized voting application ensuring transparency and immutability in electoral processes.",
-    techStack: ["Solidity", "React", "Node.js", "MongoDB"],
+    techStack: ["React", "Node.js", "Ganache", "Solidity"],
     github: "https://github.com/gajender09",
     demo: "#",
   },
   {
     title: "Real Estate Forecast",
     description: "Machine learning model with 92% accuracy for predicting real estate prices based on various parameters.",
-    techStack: ["Python", "JavaScript", "TensorFlow", "Flask"],
+    techStack: ["NumPy", "JavaScript", "TensorFlow", "Matplotlib"],
     github: "https://github.com/gajender09",
     demo: "#",
   },
@@ -49,6 +56,8 @@ export function ProjectsSection() {
       transition: {
         delay: i * 0.2,
         duration: 0.6,
+        type: "spring",
+        stiffness: 100
       }
     })
   };
@@ -73,7 +82,7 @@ export function ProjectsSection() {
           />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {projects.map((project, i) => (
             <motion.div
               key={project.title}
@@ -82,10 +91,14 @@ export function ProjectsSection() {
               animate={isInView ? "visible" : "hidden"}
               variants={cardVariants}
             >
-              <div className="flip-card h-[350px]">
+              <motion.div 
+                className="flip-card h-[350px]"
+                whileHover={{ scale: 1.03 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
                 <div className="flip-card-inner relative w-full h-full transition-transform duration-700 transform-preserve-3d hover:rotate-y-180">
                   {/* Front */}
-                  <Card className="flip-card-front glass-card w-full h-full absolute backface-hidden glow animate-glow">
+                  <Card className="flip-card-front glass-card w-full h-full absolute backface-hidden glow">
                     <CardHeader>
                       <CardTitle className="text-neon-purple">{project.title}</CardTitle>
                       <CardDescription>{project.description}</CardDescription>
@@ -93,7 +106,7 @@ export function ProjectsSection() {
                     <CardContent>
                       <div className="flex flex-wrap gap-2 mt-2">
                         {project.techStack.map((tech) => (
-                          <span key={tech} className="px-2 py-1 text-xs rounded-full glass">
+                          <span key={tech} className="px-2 py-1 text-xs rounded-full glass bg-white/5">
                             {tech}
                           </span>
                         ))}
@@ -105,7 +118,7 @@ export function ProjectsSection() {
                   </Card>
 
                   {/* Back */}
-                  <Card className="flip-card-back glass-card w-full h-full absolute backface-hidden rotate-y-180 glow animate-glow">
+                  <Card className="flip-card-back glass-card w-full h-full absolute backface-hidden rotate-y-180 glow">
                     <div className="flex flex-col justify-between h-full p-6">
                       <div>
                         <h3 className="text-xl font-bold mb-2">{project.title}</h3>
@@ -115,7 +128,7 @@ export function ProjectsSection() {
                       <div className="mt-auto space-y-4">
                         <div className="flex flex-wrap gap-2">
                           {project.techStack.map((tech) => (
-                            <span key={tech} className="px-2 py-1 text-xs rounded-full glass">
+                            <span key={tech} className="px-2 py-1 text-xs rounded-full glass bg-white/5 hover:bg-white/10 transition-all">
                               {tech}
                             </span>
                           ))}
@@ -139,7 +152,7 @@ export function ProjectsSection() {
                     </div>
                   </Card>
                 </div>
-              </div>
+              </motion.div>
             </motion.div>
           ))}
         </div>

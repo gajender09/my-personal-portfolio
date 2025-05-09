@@ -62,7 +62,7 @@ export function Header() {
     >
       <nav className="flex items-center justify-between max-w-7xl mx-auto">
         <Link to="/" className="font-mono font-bold text-2xl tracking-tighter">
-          <span className="text-neon-purple">GAJENDER</span>
+          <span className="text-neon-purple animated-gradient-text">GAJENDER</span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -86,15 +86,24 @@ export function Header() {
           ))}
         </div>
 
-        <div className="flex items-center space-x-2">
-          <Button 
-            variant="ghost" 
-            size="icon" 
-            onClick={toggleTheme}
-            className="rounded-full"
+        <div className="flex items-center space-x-3">
+          <motion.div
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            className="relative"
           >
-            {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-          </Button>
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              onClick={toggleTheme}
+              className="rounded-full glass-button"
+            >
+              {theme === 'dark' ? 
+                <Sun size={20} className="text-yellow-400" /> : 
+                <Moon size={20} className="text-indigo-500" />
+              }
+            </Button>
+          </motion.div>
 
           {/* Mobile Menu Button */}
           <Button
